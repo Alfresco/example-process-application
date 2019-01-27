@@ -1,0 +1,31 @@
+image: alpine:latest
+
+stages:
+- build_image
+- deploy_maven
+
+build_image:
+  image: docker:stable-git
+  stage: build_image
+  services:
+  - name: lordgaav/dind-options:latest
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_OPTS: "--insecure-registry=$APS_DOCKER_REGISTRY"
+  script:
+    - export DOCKER_HOST="tcp://localhost:2375"
+    - export DOCKER_IMAGE_TAG=$CI_COMMIT_REF_SLUG
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - source ./build.properties
+    - docker build
+      --label "GIT_COMMIT=$CI_COMMIT_SHA"
+      --build-arg M2_SETTINGS_FILE="$(cat ~/.m2/settings.xml)"
+      --build-arg M2_SETTINGS_SECURITY_FILE="$(cat ~/.m2/settings-security.xml)"
+      -t "$DOCKER_IMAGE_REPOSITORY:$DOCKER_IMAGE_TAG" .
+    - docker tag "$DOCKER_IMAGE_REPOSITORY:$DOCKER_IMAGE_TAG" "$CI_REGISTRY/$DOCKER_IMAGE_REPOSITORY:$DOCKER_IMAGE_TAG"
+    - docker push "$CI_REGISTRY/$DOCKER_IMAGE_REPOSITORY:$DOCKER_IMAGE_TAG"
+
+before_script:
+  - git clone --depth 1 https://$GITLAB_USER:$GITLAB_PASSWORD@git.alfresco.com/Build/bamboo-agent-config.git
+  - mkdir $HOME/.m2
+  - cp ./bamboo-agent-config/.m2/settings* $HOME/.m2/
