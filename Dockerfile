@@ -1,4 +1,4 @@
-FROM quay.io/alfresco/alfresco-process-runtime-bundle-service:develop
+FROM quay.io/alfresco/alfresco-process-runtime-bundle-service:2.0.0
 
 COPY processes BOOT-INF/classes/processes
 
