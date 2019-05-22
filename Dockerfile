@@ -1,8 +1,6 @@
-FROM quay.io/alfresco/alfresco-process-runtime-bundle-service:2.0.0
+FROM quay.io/alfresco/alfresco-process-runtime-bundle-service:2.1.0
 
-COPY processes BOOT-INF/classes/processes
+COPY processes /maven/processes
 
-# take process files from activiti example and add them
-RUN jar uvf /maven/*.jar BOOT-INF/classes/processes \
-  && rm -rf BOOT-INF
-
+# add processes to classpath
+ENV JAVA_OPTS="-cp . $JAVA_OPTS"
