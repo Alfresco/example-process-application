@@ -1,4 +1,4 @@
-FROM quay.io/alfresco/alfresco-process-runtime-bundle-service:2.1.0
+FROM quay.io/alfresco/alfresco-process-runtime-bundle-service:2.2.0
 
 COPY processes /maven/processes
 

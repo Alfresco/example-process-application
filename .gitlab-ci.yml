@@ -7,8 +7,8 @@ build_image:
   services:
     - docker:dind
   script:
-    - export DOCKER_HOST="tcp://localhost:2375"
-    - export DOCKER_IMAGE_TAG=$CI_COMMIT_REF_SLUG
+    - if [ -z "$DOCKER_HOST" -a "$KUBERNETES_PORT" ]; then export DOCKER_HOST="tcp://localhost:2375"; fi
+    - export DOCKER_IMAGE_TAG=${CI_COMMIT_REF_NAME/\//-}
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
     - source ./build.properties
     - docker build
