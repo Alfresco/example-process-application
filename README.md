@@ -24,7 +24,7 @@ docker run -it -p 127.0.0.1:8185:8185 \
   --env SPRING_RABBITMQ_USERNAME=*** \
   --env SPRING_RABBITMQ_PASSWORD=*** \
   --env SPRING_RABBITMQ_PORT=5672 \
-    alfresco/alfresco-form-service
+    alfresco/alfresco-example-form-service
 ```
 
 Obtain a token on keycloak:
