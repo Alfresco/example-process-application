@@ -24,7 +24,7 @@ docker run -it -p 127.0.0.1:8080:8080 \
   --env SPRING_RABBITMQ_USERNAME=*** \
   --env SPRING_RABBITMQ_PASSWORD=*** \
   --env SPRING_RABBITMQ_PORT=5672 \
-    alfresco/alfresco-dmn-service
+    alfresco/alfresco-example-dmn-service
 ```
 
 Hit the `http://localhost:8080/actuator/info` endpoint successfully.
