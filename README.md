@@ -15,7 +15,8 @@ export DOCKER_IMAGE_TAG=<branch>
 
 ``` bash
 docker run -it -p 127.0.0.1:8080:8080 \
-  --env ACTIVITI_CLOUD_DMN_DMNFILES=file:/maven/decision-tables/**.dmn \
+  --env DMNCONFIGURATION_TABLESDEFINITIONSDIRECTORYPATH=file:/maven/decision-tables/ \
+  --env PROJECT_MANIFEST_FILE_PATH=file:/maven/project.json \
   --env KEYCLOAK_AUTHSERVERURL=https://identity.***/auth \
   --env SPRING_DATASOURCE_URL=jdbc:postgresql://***.us-east-1.rds.amazonaws.com:5432/external-db-app \
   --env SPRING_DATASOURCE_USERNAME=*** \
