@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:activiti="http://activiti.org/bpmn" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:process id="twoTaskProcess" name="twoTaskProcess" isExecutable="true">
+    <bpmn2:documentation />
+    <bpmn2:startEvent id="StartEvent_1" name="Start">
+      <bpmn2:outgoing>SequenceFlow_0t8iy40</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_0t8iy40" sourceRef="StartEvent_1" targetRef="ExclusiveGateway_1y2b5y3" />
+    <bpmn2:parallelGateway id="ExclusiveGateway_1y2b5y3">
+      <bpmn2:incoming>SequenceFlow_0t8iy40</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_1dv8tbp</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_06oc3cd</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_1dv8tbp" sourceRef="ExclusiveGateway_1y2b5y3" targetRef="Task_0evy1bw" />
+    <bpmn2:userTask id="Task_0evy1bw" name="User Task" activiti:candidateUsers="testuser">
+      <bpmn2:incoming>SequenceFlow_1dv8tbp</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_1i80lgk</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_06oc3cd" sourceRef="ExclusiveGateway_1y2b5y3" targetRef="Task_1lj1wc1" />
+    <bpmn2:userTask id="Task_1lj1wc1" name="User Task" activiti:candidateUsers="hruser">
+      <bpmn2:incoming>SequenceFlow_06oc3cd</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_1pcfty0</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_1pcfty0" sourceRef="Task_1lj1wc1" targetRef="ExclusiveGateway_1g4aams" />
+    <bpmn2:parallelGateway id="ExclusiveGateway_1g4aams">
+      <bpmn2:incoming>SequenceFlow_1pcfty0</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_1i80lgk</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_00oa5l4</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_1i80lgk" sourceRef="Task_0evy1bw" targetRef="ExclusiveGateway_1g4aams" />
+    <bpmn2:sequenceFlow id="SequenceFlow_00oa5l4" sourceRef="ExclusiveGateway_1g4aams" targetRef="Task_0kvwsbz" />
+    <bpmn2:userTask id="Task_0kvwsbz" name="User Task">
+      <bpmn2:incoming>SequenceFlow_00oa5l4</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_194ypta</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:endEvent id="EndEvent_1hkrnz1" name="End">
+      <bpmn2:incoming>SequenceFlow_194ypta</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_194ypta" sourceRef="Task_0kvwsbz" targetRef="EndEvent_1hkrnz1" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="twoTaskProcess">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="130" y="219" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="136" y="262" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0t8iy40_di" bpmnElement="SequenceFlow_0t8iy40">
+        <di:waypoint x="166" y="237" />
+        <di:waypoint x="216" y="237" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ParallelGateway_055c6z8_di" bpmnElement="ExclusiveGateway_1y2b5y3">
+        <dc:Bounds x="216" y="212" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1dv8tbp_di" bpmnElement="SequenceFlow_1dv8tbp">
+        <di:waypoint x="241" y="212" />
+        <di:waypoint x="241" y="144" />
+        <di:waypoint x="311" y="144" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0m1w9nu_di" bpmnElement="Task_0evy1bw">
+        <dc:Bounds x="311" y="104" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_06oc3cd_di" bpmnElement="SequenceFlow_06oc3cd">
+        <di:waypoint x="241" y="262" />
+        <di:waypoint x="241" y="337" />
+        <di:waypoint x="311" y="337" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0nwgggl_di" bpmnElement="Task_1lj1wc1">
+        <dc:Bounds x="311" y="297" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1pcfty0_di" bpmnElement="SequenceFlow_1pcfty0">
+        <di:waypoint x="411" y="337" />
+        <di:waypoint x="474" y="337" />
+        <di:waypoint x="474" y="262" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ParallelGateway_1ie6cuv_di" bpmnElement="ExclusiveGateway_1g4aams">
+        <dc:Bounds x="449" y="212" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1i80lgk_di" bpmnElement="SequenceFlow_1i80lgk">
+        <di:waypoint x="411" y="144" />
+        <di:waypoint x="474" y="144" />
+        <di:waypoint x="474" y="212" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_00oa5l4_di" bpmnElement="SequenceFlow_00oa5l4">
+        <di:waypoint x="499" y="237" />
+        <di:waypoint x="537" y="237" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1gaw2d1_di" bpmnElement="Task_0kvwsbz">
+        <dc:Bounds x="537" y="197" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1hkrnz1_di" bpmnElement="EndEvent_1hkrnz1">
+        <dc:Bounds x="675" y="219" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="683" y="262" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_194ypta_di" bpmnElement="SequenceFlow_194ypta">
+        <di:waypoint x="637" y="237" />
+        <di:waypoint x="675" y="237" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
