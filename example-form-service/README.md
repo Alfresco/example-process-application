@@ -1,6 +1,6 @@
-# alfresco-example-forms-service
+# example-forms-service
 
-Example Form Runtime service based on the Form Runtime Service.
+_Example Form Runtime Service_ based on the [Alfresco Form Runtime Service](https://github.com/Alfresco/alfresco-form-service).
 
 *To build and publish*:
 
@@ -25,7 +25,7 @@ docker run -it -p 127.0.0.1:8185:8185 \
   --env SPRING_RABBITMQ_USERNAME=*** \
   --env SPRING_RABBITMQ_PASSWORD=*** \
   --env SPRING_RABBITMQ_PORT=5672 \
-    alfresco/alfresco-example-form-service
+    alfresco/example-form-service
 ```
 
 Obtain a token on keycloak:
