@@ -16,6 +16,7 @@ export DOCKER_IMAGE_TAG=<branch>
 ``` bash
 docker run -it -p 127.0.0.1:8080:8080 \
   --env SPRING_ACTIVITI_PROCESSDEFINITIONLOCATIONPREFIX=file:/maven/processes/ \
+  --env PROJECT_MANIFEST_FILE_PATH=file:/maven/project.json \
   --env KEYCLOAK_AUTHSERVERURL=https://identity.***/auth \
   --env SPRING_DATASOURCE_URL=jdbc:postgresql://***.us-east-1.rds.amazonaws.com:5432/external-db-app \
   --env SPRING_DATASOURCE_USERNAME=*** \
@@ -28,7 +29,9 @@ docker run -it -p 127.0.0.1:8080:8080 \
     alfresco/example-process-runtime-bundle-service
 ```
 
-Note: The above assumes that the running container has access to a valid license reachable at this location:
+Notes: 
+
+* The above assumes that the running container has access to a valid license reachable at this location:
 `/root/.activiti/enterprise-license/activiti.lic`
 
 Otherwise for testing purpose, please add the following line to the Dockerfile:
@@ -37,4 +40,5 @@ COPY activiti.lic /root/.activiti/enterprise-license/activiti.lic
 ```
 and the `activiti.lic` license file to the project repository root.
 
-Messaging rabbitmq variables are optional.
+* set KEYCLOAK_USE_RESOURCE_ROLE_MAPPINGS to `false` for testing purpose only.
+See documentation application keycloak client section.

@@ -16,7 +16,7 @@ export DOCKER_IMAGE_TAG=<branch>
 ``` bash
 docker run -it -p 127.0.0.1:8185:8185 \
   --env FORMCONFIGURATION_FORMSDEFINITIONSDIRECTORYPATH=file:/maven/forms/ \
-  --env PROJECT_MANIFEST_FILE_PATH=file:/maven/project.json \
+  --env APPLICATION_VERSION=1 \
   --env KEYCLOAK_AUTHSERVERURL=https://identity.***/auth \
   --env SPRING_DATASOURCE_URL=jdbc:postgresql://***.us-east-1.rds.amazonaws.com:5432/external-db-app \
   --env SPRING_DATASOURCE_USERNAME=*** \
@@ -46,4 +46,3 @@ Hit the GET `http://localhost:8185/v1/forms` endpoint and get:
 ]
 ```
 
-Messaging rabbitmq variables are optional.

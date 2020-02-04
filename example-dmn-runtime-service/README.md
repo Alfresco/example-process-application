@@ -16,7 +16,7 @@ export DOCKER_IMAGE_TAG=<branch>
 ``` bash
 docker run -it -p 127.0.0.1:8080:8080 \
   --env DMNCONFIGURATION_TABLESDEFINITIONSDIRECTORYPATH=file:/maven/decision-tables/ \
-  --env PROJECT_MANIFEST_FILE_PATH=file:/maven/project.json \
+  --env APPLICATION_VERSION=1 \
   --env KEYCLOAK_AUTHSERVERURL=https://identity.***/auth \
   --env SPRING_DATASOURCE_URL=jdbc:postgresql://***.us-east-1.rds.amazonaws.com:5432/external-db-app \
   --env SPRING_DATASOURCE_USERNAME=*** \
@@ -30,7 +30,9 @@ docker run -it -p 127.0.0.1:8080:8080 \
 
 Hit the `http://localhost:8080/actuator/info` endpoint successfully.
 
-Note: The above assumes that the running container has access to a valid license reachable at this location:
+Note: 
+
+* The above assumes that the running container has access to a valid license reachable at this location:
 `/root/.activiti/enterprise-license/activiti.lic`
 
 Otherwise for testing purpose, please add the following line to the Dockerfile:
@@ -39,7 +41,6 @@ COPY activiti.lic /root/.activiti/enterprise-license/activiti.lic
 ```
 and the `activiti.lic` license file to the project repository root.
 
-Messaging rabbitmq variables are optional.
 
 
 
