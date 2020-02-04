@@ -1,4 +1,3 @@
-FROM quay.io/alfresco/alfresco-form-service:7.1.0.M5
+FROM quay.io/alfresco/alfresco-form-service:develop
 
 COPY project/forms /maven/forms
-COPY project/project.json /maven/project.json
