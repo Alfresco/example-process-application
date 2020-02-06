@@ -18,9 +18,6 @@ docker run -it -p 127.0.0.1:8080:8080 \
   --env SCRIPTCONFIGURATION_SCRIPTSDEFINITIONSDIRECTORYPATH=file:/maven/scripts/ \
   --env APPLICATION_VERSION=1 \
   --env ACT_KEYCLOAK_URL=https://identity.***/auth \
-  --env CONTENT_SERVICE_URL=https://gateway.*** \
-  --env CONTENT_CLIENT_SECRET=*** \
-  --env CONTENT_CLIENT_ID=script-runtime-audit-filters \
   --env SPRING_DATASOURCE_URL=jdbc:postgresql://***.us-east-1.rds.amazonaws.com:5432/external-db-app \
   --env SPRING_DATASOURCE_USERNAME=*** \
   --env SPRING_DATASOURCE_PASSWORD=*** \
