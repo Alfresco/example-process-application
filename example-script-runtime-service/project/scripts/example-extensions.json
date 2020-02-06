@@ -1,0 +1,16 @@
+{
+  "id": "script-f73d3d7f-77da-414e-a971-0f6695cd5088",
+  "type": "SCRIPT",
+  "name": "example",
+  "extensions": {
+    "createdAt": "2020-02-06T00:20:40.707Z",
+    "name": "process-entities.js",
+    "language": "js",
+    "uri": "file:/example.bin",
+    "content": {
+      "sizeInBytes": 820,
+      "mimeType": "text/javascript"
+    },
+    "variables":[]
+  }
+}

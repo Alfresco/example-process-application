@@ -16,7 +16,8 @@ export DOCKER_IMAGE_TAG=<branch>
 ``` bash
 docker run -it -p 127.0.0.1:8080:8080 \
   --env SCRIPTCONFIGURATION_SCRIPTSDEFINITIONSDIRECTORYPATH=file:/maven/scripts/ \
-  --env KEYCLOAK_AUTHSERVERURL=https://identity.***/auth \
+  --env APPLICATION_VERSION=1 \
+  --env ACT_KEYCLOAK_URL=https://identity.***/auth \
   --env SPRING_DATASOURCE_URL=jdbc:postgresql://***.us-east-1.rds.amazonaws.com:5432/external-db-app \
   --env SPRING_DATASOURCE_USERNAME=*** \
   --env SPRING_DATASOURCE_PASSWORD=*** \
@@ -38,7 +39,6 @@ COPY activiti.lic /root/.activiti/enterprise-license/activiti.lic
 ```
 and the `activiti.lic` license file to the project repository root.
 
-Messaging rabbitmq variables are optional.
 
 
 
