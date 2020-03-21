@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://bpmn.io/schema/bpmn" id="model-3e55a1d7-e45a-4c8c-8a92-c92e674246f2" name="intermediate-message-event" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:message id="Message_04x0m6d" name="intermediate catch message event-${partmessage}"></bpmn2:message>
+  <bpmn2:process id="Process_A_d13PYx" name="intermediate-message-event" isExecutable="true">
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>SequenceFlow_0c8osuo</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_0c8osuo" sourceRef="StartEvent_1" targetRef="UserTask_1rv2v21"></bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="SequenceFlow_00sud25" sourceRef="IntermediateCatchEvent_1yob7rg" targetRef="Task_0o1hyn0"></bpmn2:sequenceFlow>
+    <bpmn2:endEvent id="EndEvent_03q2h6a">
+      <bpmn2:incoming>SequenceFlow_127h649</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_127h649" sourceRef="Task_0o1hyn0" targetRef="EndEvent_03q2h6a"></bpmn2:sequenceFlow>
+    <bpmn2:userTask id="UserTask_1rv2v21" name="usertaskform" activiti:assignee="hruser" activiti:formKey="form-b7fd9ce3-2b33-4192-9349-3e461506c172">
+      <bpmn2:incoming>SequenceFlow_0c8osuo</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_1ytbsta</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Task_0o1hyn0" name="intermediateusertask" activiti:assignee="hruser">
+      <bpmn2:incoming>SequenceFlow_00sud25</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_127h649</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_1ytbsta" sourceRef="UserTask_1rv2v21" targetRef="IntermediateThrowEvent_1i26two"></bpmn2:sequenceFlow>
+    <bpmn2:intermediateCatchEvent id="IntermediateCatchEvent_1yob7rg">
+      <bpmn2:incoming>SequenceFlow_1rau5ro</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_00sud25</bpmn2:outgoing>
+      <messageEventDefinition messageRef="Message_04x0m6d" activiti:correlationKey="${intermediate_var}"></messageEventDefinition>
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_1rau5ro" sourceRef="IntermediateThrowEvent_1i26two" targetRef="IntermediateCatchEvent_1yob7rg"></bpmn2:sequenceFlow>
+    <bpmn2:intermediateThrowEvent id="IntermediateThrowEvent_1i26two">
+      <bpmn2:incoming>SequenceFlow_1ytbsta</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_1rau5ro</bpmn2:outgoing>
+      <messageEventDefinition messageRef="Message_04x0m6d" activiti:correlationKey="${intermediate_var}"></messageEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Process_A_d13PYx">
+    <bpmndi:BPMNPlane bpmnElement="Process_A_d13PYx" id="BPMNPlane_Process_A_d13PYx">
+      <bpmndi:BPMNShape bpmnElement="StartEvent_1" id="BPMNShape_StartEvent_1">
+        <omgdc:Bounds height="36.0" width="36.0" x="12.0" y="196.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="EndEvent_03q2h6a" id="BPMNShape_EndEvent_03q2h6a">
+        <omgdc:Bounds height="36.0" width="36.0" x="595.0" y="196.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UserTask_1rv2v21" id="BPMNShape_UserTask_1rv2v21">
+        <omgdc:Bounds height="80.0" width="100.0" x="90.0" y="174.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Task_0o1hyn0" id="BPMNShape_Task_0o1hyn0">
+        <omgdc:Bounds height="80.0" width="100.0" x="445.0" y="174.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="IntermediateCatchEvent_1yob7rg" id="BPMNShape_IntermediateCatchEvent_1yob7rg">
+        <omgdc:Bounds height="36.0" width="36.0" x="359.0" y="196.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="IntermediateThrowEvent_1i26two" id="BPMNShape_IntermediateThrowEvent_1i26two">
+        <omgdc:Bounds height="36.0" width="36.0" x="252.0" y="196.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_0c8osuo" id="BPMNEdge_SequenceFlow_0c8osuo">
+        <omgdi:waypoint x="48.0" y="214.0"></omgdi:waypoint>
+        <omgdi:waypoint x="90.0" y="214.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_00sud25" id="BPMNEdge_SequenceFlow_00sud25">
+        <omgdi:waypoint x="395.0" y="214.0"></omgdi:waypoint>
+        <omgdi:waypoint x="445.0" y="214.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_127h649" id="BPMNEdge_SequenceFlow_127h649">
+        <omgdi:waypoint x="545.0" y="214.0"></omgdi:waypoint>
+        <omgdi:waypoint x="595.0" y="214.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1ytbsta" id="BPMNEdge_SequenceFlow_1ytbsta">
+        <omgdi:waypoint x="190.0" y="214.0"></omgdi:waypoint>
+        <omgdi:waypoint x="252.0" y="214.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1rau5ro" id="BPMNEdge_SequenceFlow_1rau5ro">
+        <omgdi:waypoint x="288.0" y="214.0"></omgdi:waypoint>
+        <omgdi:waypoint x="359.0" y="214.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

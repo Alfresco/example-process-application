@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://bpmn.io/schema/bpmn" id="model-e188cdce-3c61-4063-88b6-d0a21e7290a9" name="simpleprocess" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:process id="Process__DPVOltD" name="simpleprocess" isExecutable="true">
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>SequenceFlow_0jdd7i3</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_0jdd7i3" sourceRef="StartEvent_1" targetRef="Task_1gp4t4s"></bpmn2:sequenceFlow>
+    <bpmn2:userTask id="Task_1gp4t4s" name="taskSimple" activiti:assignee="hruser">
+      <bpmn2:incoming>SequenceFlow_0jdd7i3</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_00wy043</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:endEvent id="EndEvent_05442a5">
+      <bpmn2:incoming>SequenceFlow_00wy043</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_00wy043" sourceRef="Task_1gp4t4s" targetRef="EndEvent_05442a5"></bpmn2:sequenceFlow>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Process__DPVOltD">
+    <bpmndi:BPMNPlane bpmnElement="Process__DPVOltD" id="BPMNPlane_Process__DPVOltD">
+      <bpmndi:BPMNShape bpmnElement="StartEvent_1" id="BPMNShape_StartEvent_1">
+        <omgdc:Bounds height="36.0" width="36.0" x="412.0" y="240.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Task_1gp4t4s" id="BPMNShape_Task_1gp4t4s">
+        <omgdc:Bounds height="80.0" width="100.0" x="498.0" y="218.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="EndEvent_05442a5" id="BPMNShape_EndEvent_05442a5">
+        <omgdc:Bounds height="36.0" width="36.0" x="648.0" y="240.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_0jdd7i3" id="BPMNEdge_SequenceFlow_0jdd7i3">
+        <omgdi:waypoint x="448.0" y="258.0"></omgdi:waypoint>
+        <omgdi:waypoint x="498.0" y="258.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_00wy043" id="BPMNEdge_SequenceFlow_00wy043">
+        <omgdi:waypoint x="598.0" y="258.0"></omgdi:waypoint>
+        <omgdi:waypoint x="648.0" y="258.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

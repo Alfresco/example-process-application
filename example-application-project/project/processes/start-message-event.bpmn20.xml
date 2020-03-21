@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://bpmn.io/schema/bpmn" id="model-92d6b0b6-257d-4da5-90e6-f88159f7c17d" name="start-message-event" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:message id="Message_0hq81h3" name="Start message"></bpmn2:message>
+  <bpmn2:message id="Message_0nw8ead" name="intermediate catch event message"></bpmn2:message>
+  <bpmn2:message id="Message_0rdttwu" name="message interrupting boundary event"></bpmn2:message>
+  <bpmn2:message id="Message_1qrh8at" name="message noninterrupting boundary event"></bpmn2:message>
+  <bpmn2:process id="Process_b29tiU5n" name="start-message-event" isExecutable="true">
+    <bpmn2:startEvent id="StartEvent_1" isInterrupting="true">
+      <bpmn2:outgoing>SequenceFlow_1lveojo</bpmn2:outgoing>
+      <messageEventDefinition messageRef="Message_0hq81h3"></messageEventDefinition>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_1lveojo" sourceRef="StartEvent_1" targetRef="Task_0o63oyn"></bpmn2:sequenceFlow>
+    <bpmn2:userTask id="Task_0o63oyn" name="simple user task" activiti:assignee="hruser">
+      <bpmn2:incoming>SequenceFlow_1lveojo</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_174p8lw</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:endEvent id="EndEvent_0kr4bgd">
+      <bpmn2:incoming>SequenceFlow_174p8lw</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_174p8lw" sourceRef="Task_0o63oyn" targetRef="EndEvent_0kr4bgd"></bpmn2:sequenceFlow>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Process_b29tiU5n">
+    <bpmndi:BPMNPlane bpmnElement="Process_b29tiU5n" id="BPMNPlane_Process_b29tiU5n">
+      <bpmndi:BPMNShape bpmnElement="StartEvent_1" id="BPMNShape_StartEvent_1">
+        <omgdc:Bounds height="36.0" width="36.0" x="27.0" y="154.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Task_0o63oyn" id="BPMNShape_Task_0o63oyn">
+        <omgdc:Bounds height="80.0" width="100.0" x="389.0" y="132.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="EndEvent_0kr4bgd" id="BPMNShape_EndEvent_0kr4bgd">
+        <omgdc:Bounds height="36.0" width="36.0" x="539.0" y="154.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1lveojo" id="BPMNEdge_SequenceFlow_1lveojo">
+        <omgdi:waypoint x="63.0" y="172.0"></omgdi:waypoint>
+        <omgdi:waypoint x="389.0" y="172.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_174p8lw" id="BPMNEdge_SequenceFlow_174p8lw">
+        <omgdi:waypoint x="489.0" y="172.0"></omgdi:waypoint>
+        <omgdi:waypoint x="539.0" y="172.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

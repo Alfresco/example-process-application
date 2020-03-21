@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:activiti="http://activiti.org/schema/1.0/dmn" id="decision-134e181f-c622-4124-8a8a-ce5714dd2997" name="decisioninteger" namespace="http://activiti.org/schema/1.0/dmn" exporter="dmn-js (https://demo.bpmn.io/dmn)" exporterVersion="6.2.1">
+  <decision id="Decision_decisioninteger" name="Decision_decisioninteger">
+    <decisionTable id="DecisionTable_decisioninteger">
+      <input id="InputClause_decisioninteger" label="inputString" activiti:inputVariable="inputString">
+        <inputExpression id="LiteralExpression_decisioninteger" typeRef="string" />
+      </input>
+      <input id="InputClause_1x0ust5" label="inputInteger" activiti:inputVariable="inputInteger">
+        <inputExpression id="LiteralExpression_1ypkxs1" typeRef="integer">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1v21dyc" label="inputDate" activiti:inputVariable="inputDate">
+        <inputExpression id="LiteralExpression_0knoyqp" typeRef="date">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0ceb0ex" label="intBoolean" activiti:inputVariable="intBoolean">
+        <inputExpression id="LiteralExpression_05siuzp" typeRef="boolean">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_decisioninteger" label="outInteger" name="outInteger" typeRef="integer" />
+      <rule id="DecisionRule_0xkujla">
+        <inputEntry id="UnaryTests_0ws48hz">
+          <text>"hi"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1s06jji">
+          <text>11</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xg1zny">
+          <text>date and time("2019-09-26T00:00:00")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_13l5vrd">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11o00kc">
+          <text>22</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
