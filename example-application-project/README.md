@@ -1,48 +1,37 @@
-# example-forms-service
-
-_Example Form Runtime Service_ based on the [Alfresco Form Runtime Service](https://github.com/Alfresco/alfresco-form-service).
+# example-application-project
 
 *To build and publish*:
 
+Update values for variable in *build.properties* and *env.sh* for registry url.
+
 ```bash
-export DOCKER_IMAGE_TAG=<branch>
 ./build.sh
 ./push.sh
 ```
 
+To test this image you need to have Job with volumemount to copy project files from the image.
 
-*How to test the built image*
+example job yaml:
 
-``` bash
-docker run -it -p 127.0.0.1:8185:8185 \
-  --env FORMCONFIGURATION_FORMSDEFINITIONSDIRECTORYPATH=file:/maven/forms/ \
-  --env APPLICATION_VERSION=1 \
-  --env KEYCLOAK_AUTHSERVERURL=https://identity.***/auth \
-  --env SPRING_DATASOURCE_URL=jdbc:postgresql://***.us-east-1.rds.amazonaws.com:5432/external-db-app \
-  --env SPRING_DATASOURCE_USERNAME=*** \
-  --env SPRING_DATASOURCE_PASSWORD=*** \
-  --env SPRING_RABBITMQ_HOST=*** \
-  --env SPRING_RABBITMQ_USERNAME=*** \
-  --env SPRING_RABBITMQ_PASSWORD=*** \
-  --env SPRING_RABBITMQ_PORT=5672 \
-    alfresco/example-form-service
 ```
-
-Obtain a token on keycloak:
-`https://identity.***/auth/realms/alfresco/protocol/openid-connect/token`
-
-Hit the GET `http://localhost:8185/v1/forms` endpoint and get:
-```json
-[
-    {
-        "formRepresentation": {
-            "id": "form-c32e4995-1590-4672-89ec-2de26050564d",
-            "name": "testForm",
-            "description": "",
-            "version": 0,
-            "standAlone": true
-        }
-    }
-]
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: volume-init
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      volumes:
+        - name: example-app
+          persistentVolumeClaim:
+            claimName: example-app
+      containers:
+        - name: volume-init
+          image: #image location
+          volumeMounts:
+            - name: example-app
+              mountPath: /root/example-app/
+              readOnly: false
 ```
-

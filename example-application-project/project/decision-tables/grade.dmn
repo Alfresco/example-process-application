@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:activiti="http://activiti.org/schema/1.0/dmn" id="decision-d9224f79-f14d-4b2e-8514-3dc172162ee5" name="grade" namespace="http://activiti.org/schema/1.0/dmn" exporter="dmn-js (https://demo.bpmn.io/dmn)" exporterVersion="6.2.1">
+  <decision id="Decision_grade" name="Decision_grade">
+    <decisionTable id="DecisionTable_grade">
+      <input id="InputClause_grade" label="Score" activiti:inputVariable="Score">
+        <inputExpression id="LiteralExpression_grade" typeRef="integer">
+          <text>Score</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_grade" label="Grade" name="Grade" typeRef="string" />
+      <rule id="DecisionRule_08dbf09">
+        <inputEntry id="UnaryTests_06at64x">
+          <text>&gt;50</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1cpuggw">
+          <text>"Good"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ibvwik">
+        <inputEntry id="UnaryTests_06po6cr">
+          <text>&lt;50</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0k33wfv">
+          <text>"Bad"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

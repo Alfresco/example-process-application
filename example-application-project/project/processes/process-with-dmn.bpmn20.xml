@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="sample-diagram" name="process-with-dmn" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <process id="Process_processWithDmn" name="process" isExecutable="true">
+    <startEvent id="StartEvent_1">
+      <outgoing>SequenceFlow_0as4hbz</outgoing>
+    </startEvent>
+    <userTask id="UserTask_07wwos4" name="user-task" activiti:assignee="hruser">
+      <incoming>SequenceFlow_0as4hbz</incoming>
+      <outgoing>SequenceFlow_0p63d8r</outgoing>
+    </userTask>
+    <sequenceFlow id="SequenceFlow_0as4hbz" sourceRef="StartEvent_1" targetRef="UserTask_07wwos4" />
+    <sequenceFlow id="SequenceFlow_0p63d8r" sourceRef="UserTask_07wwos4" targetRef="ServiceTask_0hhfs9b" />
+    <userTask id="UserTask_1ubjzfu" name="user-task-2" activiti:assignee="hruser">
+      <incoming>SequenceFlow_007uae5</incoming>
+      <outgoing>SequenceFlow_0hwaqwh</outgoing>
+    </userTask>
+    <serviceTask id="ServiceTask_0hhfs9b" name="service-task-dmn" implementation="dmn-connector.EXECUTE_TABLE">
+      <incoming>SequenceFlow_0p63d8r</incoming>
+      <outgoing>SequenceFlow_007uae5</outgoing>
+    </serviceTask>
+    <sequenceFlow id="SequenceFlow_007uae5" sourceRef="ServiceTask_0hhfs9b" targetRef="UserTask_1ubjzfu" />
+    <endEvent id="EndEvent_1pgw8hu">
+      <incoming>SequenceFlow_0hwaqwh</incoming>
+    </endEvent>
+    <sequenceFlow id="SequenceFlow_0hwaqwh" sourceRef="UserTask_1ubjzfu" targetRef="EndEvent_1pgw8hu" />
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Process_processWithDmn">
+    <bpmndi:BPMNPlane id="BPMNPlane_Process_processWithDmn" bpmnElement="Process_processWithDmn">
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="StartEvent_1">
+        <omgdc:Bounds x="412" y="240" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_UserTask_07wwos4" bpmnElement="UserTask_07wwos4">
+        <omgdc:Bounds x="510" y="218" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_UserTask_1ubjzfu" bpmnElement="UserTask_1ubjzfu">
+        <omgdc:Bounds x="780" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ServiceTask_0hhfs9b" bpmnElement="ServiceTask_0hhfs9b">
+        <omgdc:Bounds x="645" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_1pgw8hu" bpmnElement="EndEvent_1pgw8hu">
+        <omgdc:Bounds x="922" y="252" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_0as4hbz" bpmnElement="SequenceFlow_0as4hbz">
+        <omgdi:waypoint x="448" y="258" />
+        <omgdi:waypoint x="510" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_0p63d8r" bpmnElement="SequenceFlow_0p63d8r">
+        <omgdi:waypoint x="610" y="258" />
+        <omgdi:waypoint x="628" y="258" />
+        <omgdi:waypoint x="628" y="270" />
+        <omgdi:waypoint x="645" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_007uae5" bpmnElement="SequenceFlow_007uae5">
+        <omgdi:waypoint x="745" y="270" />
+        <omgdi:waypoint x="780" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_0hwaqwh" bpmnElement="SequenceFlow_0hwaqwh">
+        <omgdi:waypoint x="880" y="270" />
+        <omgdi:waypoint x="922" y="270" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
