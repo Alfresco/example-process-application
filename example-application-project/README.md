@@ -2,8 +2,19 @@
 
 *To build and publish*:
 
-Update values for variable in *build.properties* and *env.sh* for registry url.
+Update values for variables in **build.properties** and **env.sh** for registry url.
 
+```
+CLASSPATH_DIRECTORY_NAME=${CLASSPATH_DIRECTORY_NAME:-example-app}
+VERSION=${VERSION:-1}
+```
+
+```
+export DOCKER_REGISTRY="quay.io"
+```
+
+
+***To build and push image***
 ```bash
 ./build.sh
 ./push.sh
