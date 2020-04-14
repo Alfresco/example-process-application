@@ -26,6 +26,7 @@ docker run -it -p 127.0.0.1:8080:8080 \
   --env SPRING_RABBITMQ_USERNAME=*** \
   --env SPRING_RABBITMQ_PASSWORD=*** \
   --env SPRING_RABBITMQ_PORT=5672 \
+  --env TRIGGERS_PATH=/root/.activiti/connector-exchange-volume/1/triggers \
     alfresco/example-process-runtime-bundle-service
 ```
 
