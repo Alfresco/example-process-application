@@ -1,8 +1,6 @@
 # example-process-application
 
-_Example Process Application_ for AAE with examples to build custom images:
+_Example Process Application_ for AAE
 
-* example-process-runtime-bundle-service with process definitions
-* example-form-service with form definitions
-* example-dmn-runtime-service with DMN definitions
-* example-script-runtime-service with script definitions
+Builds an example application image example containing a project.
+The image will be used by the application helm chart to populate the application volume.
