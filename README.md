@@ -2,5 +2,6 @@
 
 _Example Process Application_ for AAE
 
-Builds an example application image example containing a project.
-The image will be used by the application helm chart to populate the application volume.
+`example-application-project` builds an application image containing an example of a project that includes processes, forms, decision tables etc.
+
+The image will be used by the application helm chart to populate the volume with the project data.
