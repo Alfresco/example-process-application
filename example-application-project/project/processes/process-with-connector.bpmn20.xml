@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:activiti="http://activiti.org/bpmn" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:modeler="http://activiti.com/modeler" name="x" id="model-9b7b4a0e-0c68-4de5-98eb-8220495434e0" targetNamespace="http://www.activiti.org/processdef" modeler:version="1.0en" modeler:exportDateTime="20180529150437137" modeler:modelId="19022" modeler:modelVersion="1" modeler:modelLastUpdated="1527595380956">
+  <process id="Process_processWithConnector" name="process-with-connector" isExecutable="true">
+    <startEvent id="StartEvent_0chdujj">
+      <outgoing>SequenceFlow_137uuen</outgoing>
+    </startEvent>
+    <userTask id="UserTask_1r2wr7u" name="task-from-process-with-connector" activiti:assignee="hruser">
+      <incoming>SequenceFlow_137uuen</incoming>
+      <outgoing>SequenceFlow_0bndj4f</outgoing>
+    </userTask>
+    <sequenceFlow id="SequenceFlow_137uuen" sourceRef="StartEvent_0chdujj" targetRef="UserTask_1r2wr7u" />
+    <endEvent id="EndEvent_1bevwc5">
+      <incoming>SequenceFlow_1eytpsm</incoming>
+    </endEvent>
+    <sequenceFlow id="SequenceFlow_0bndj4f" sourceRef="UserTask_1r2wr7u" targetRef="ServiceTask_0963x1o" />
+    <serviceTask id="ServiceTask_0963x1o" implementation="connector.get">
+      <incoming>SequenceFlow_0bndj4f</incoming>
+      <outgoing>SequenceFlow_0lc0wst</outgoing>
+    </serviceTask>
+    <sequenceFlow id="SequenceFlow_0lc0wst" sourceRef="ServiceTask_0963x1o" targetRef="UserTask_1bzzaxs" />
+    <userTask id="UserTask_1bzzaxs" name="user-task-two" activiti:assignee="hruser">
+      <incoming>SequenceFlow_0lc0wst</incoming>
+      <outgoing>SequenceFlow_1eytpsm</outgoing>
+    </userTask>
+    <sequenceFlow id="SequenceFlow_1eytpsm" sourceRef="UserTask_1bzzaxs" targetRef="EndEvent_1bevwc5" />
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Process_processWithConnector">
+    <bpmndi:BPMNPlane id="BPMNPlane_Process_processWithConnector" bpmnElement="Process_processWithConnector">
+      <bpmndi:BPMNShape id="StartEvent_0chdujj_di" bpmnElement="StartEvent_0chdujj">
+        <dc:Bounds x="172" y="242" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1r2wr7u_di" bpmnElement="UserTask_1r2wr7u">
+        <dc:Bounds x="240" y="220" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_137uuen_di" bpmnElement="SequenceFlow_137uuen">
+        <di:waypoint x="208" y="260" />
+        <di:waypoint x="240" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1bevwc5_di" bpmnElement="EndEvent_1bevwc5">
+        <dc:Bounds x="702" y="242" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0bndj4f_di" bpmnElement="SequenceFlow_0bndj4f">
+        <di:waypoint x="340" y="260" />
+        <di:waypoint x="390" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0963x1o_di" bpmnElement="ServiceTask_0963x1o">
+        <dc:Bounds x="390" y="220" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0lc0wst_di" bpmnElement="SequenceFlow_0lc0wst">
+        <di:waypoint x="490" y="260" />
+        <di:waypoint x="546" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1bzzaxs_di" bpmnElement="UserTask_1bzzaxs">
+        <dc:Bounds x="546" y="220" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1eytpsm_di" bpmnElement="SequenceFlow_1eytpsm">
+        <di:waypoint x="646" y="260" />
+        <di:waypoint x="702" y="260" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
