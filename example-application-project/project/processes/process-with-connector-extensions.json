@@ -1,0 +1,29 @@
+{
+  "id": "process-9b7b4a0e-0c68-4de5-98eb-8220495434e0",
+  "type": "PROCESS",
+  "name": "process-with-connector",
+  "extensions": {
+    "Process_processWithConnector": {
+      "constants": {},
+      "mappings": {
+        "ServiceTask_0963x1o": {
+          "outputs": {
+            "variable-from-process-with-connector": {
+              "type": "variable",
+              "value": "variable"
+            }
+          }
+        }
+      },
+      "properties": {
+        "7f8a4d4c-5665-4c52-945f-cf263aaa7714": {
+          "id": "7f8a4d4c-5665-4c52-945f-cf263aaa7714",
+          "name": "variable-from-process-with-connector",
+          "type": "string",
+          "required": false,
+          "value": "initial-value"
+        }
+      }
+    }
+  }
+}
