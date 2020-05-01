@@ -1,0 +1,19 @@
+{
+  "name": "connector",
+  "description": "",
+  "actions": {
+    "7944c8fe-addb-4b33-8c1c-0caf0de684c4": {
+      "id": "7944c8fe-addb-4b33-8c1c-0caf0de684c4",
+      "name": "get",
+      "description": "",
+      "outputs": [
+        {
+          "id": "452ae35e-cd45-49c0-814d-0f91156da53a",
+          "name": "variable",
+          "description": "",
+          "type": "string"
+        }
+      ]
+    }
+  }
+}
