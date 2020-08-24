@@ -2,7 +2,7 @@
 
 *To build and publish*:
 
-Update values for variables in **build.properties** and **env.sh** for registry url.
+Update values for variables in **build.properties** for registry url.
 
 ```
 CLASSPATH_DIRECTORY_NAME=${CLASSPATH_DIRECTORY_NAME:-example-app}
