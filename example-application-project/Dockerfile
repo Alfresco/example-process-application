@@ -3,7 +3,6 @@ WORKDIR /tmp
 
 ARG CLASSPATH_DIRECTORY_NAME
 ARG VERSION
-USER alfresco
 
 COPY project/ /tmp/
 COPY copy-files-to-volume.sh /usr/local/bin/copy-files-to-volume.sh
