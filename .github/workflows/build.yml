@@ -10,15 +10,6 @@ env:
 
 
 jobs:
-  empty-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print Hello world
-        run: echo Hello World!
-
-      - name: Print Branch and Repo name
-        run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-  
   docker:
     runs-on: ubuntu-latest
     permissions:
