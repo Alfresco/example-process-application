@@ -1,0 +1,13 @@
+name: Test Workflow
+
+on:
+  push:
+    branches:
+      - "dev-rkumar-AAE-16008-Stop-building-example-application-project-on-every-run-of-helm-tests"
+
+jobs:
+  empty-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello world
+        run: echo Hello World!
