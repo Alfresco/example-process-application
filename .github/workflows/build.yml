@@ -40,24 +40,21 @@ jobs:
       - name: Login to docker.io
         uses: docker/login-action@v2
         with:
-          # username: ${{ secrets.docker-username }}
-          username: rahulbhl22
-          # password: ${{ secrets.docker-password }}
-          password: dckr_pat_jSK6EnRfBi4eQRRUEZgN6nsH7UI
+          username: ${{ secrets.docker-username }}
+          password: ${{ secrets.docker-password }}
 
 
       - name: Build image ${{ env.IMAGE_NAME }}
         uses: docker/build-push-action@v4
         with:
           context: ./example-application-project
-          # tags: ghcr.io/alfresco/${{ env.IMAGE_NAME }}
-          tags: rahulbhl22/test:latest
+          tags: ghcr.io/alfresco/${{ env.IMAGE_NAME }}
           push: true
 
-      # - name: Login to ghcr.io
-      #   # if: env.PUSH_IMAGE == 'true'
-      #   uses: docker/login-action@v2
-      #   with:
-      #     registry: ghcr.io
-      #     username: ${{ inputs.ghcr-username }}
-      #     password: ${{ inputs.ghcr-token }}
+      - name: Login to ghcr.io
+        # if: env.PUSH_IMAGE == 'true'
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.ghcr-username }}
+          password: ${{ secrets.ghcr-token }}
