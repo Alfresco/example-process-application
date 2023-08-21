@@ -52,10 +52,7 @@ jobs:
           context: ./example-application-project
           # tags: ghcr.io/alfresco/${{ env.IMAGE_NAME }}
           tags: rahulbhl22/test:latest
-          load: true
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          provenance: false
+          push: true
 
       # - name: Login to ghcr.io
       #   # if: env.PUSH_IMAGE == 'true'
