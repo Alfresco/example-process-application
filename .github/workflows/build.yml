@@ -10,7 +10,7 @@ env:
 
 
 jobs:
-  docker:
+  build-image:
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -40,7 +40,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Login to ghcr.io
-        # if: env.PUSH_IMAGE == 'true'
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
@@ -51,7 +50,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./example-application-project
-          tags: ghcr.io/alfresco/example-process-application
+          tags: ghcr.io/alfresco/example-process-application:7.12.0-alpha.1
           push: true
 
       
