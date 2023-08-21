@@ -48,7 +48,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./example-application-project
-          tags: ghcr.io/alfresco/${{ env.IMAGE_NAME }}
+          tags: ghcr.io/alfresco/example-process-application
           push: true
 
       - name: Login to ghcr.io
