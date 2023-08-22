@@ -97,6 +97,3 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
         run: gh release create "${{needs.build-image.outputs.VERSION}}" --generate-notes -t "${{needs.build-image.outputs.VERSION}}"
-
-
-      
