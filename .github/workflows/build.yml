@@ -80,7 +80,7 @@ jobs:
       - name: Apply release changes
         # if: steps.release_guard.outputs.do_release == 'true'
         run: |
-          echo steps.release_guard.outputs.do_release
+          echo "${{steps.release_guard.outputs.do_release}}"
           echo "Apply release changes"
 
 
