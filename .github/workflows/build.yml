@@ -14,13 +14,11 @@ env:
 jobs:
   build-image:
     runs-on: ubuntu-latest
-
     permissions:
       actions: read
       contents: read
       packages: write
       security-events: write
-
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3 
@@ -76,13 +74,13 @@ jobs:
 
   release:
     name: Release
+    needs: build-image
     runs-on: ubuntu-latest
-
     steps:
-
       - name: Apply release changes
-        if: steps.release_guard.outputs.do_release == 'true'
+        # if: steps.release_guard.outputs.do_release == 'true'
         run: |
+          echo steps.release_guard.outputs.do_release
           echo "Apply release changes"
 
 
