@@ -76,15 +76,16 @@ jobs:
             CLASSPATH_DIRECTORY_NAME=${{env.CLASSPATH_DIRECTORY_NAME}}
             VERSION=${{env.ARG_VERSION}}
 
-  release:
-    name: Release
+  release-notes:
+    name: Release Notes
     needs: build-image
     runs-on: ubuntu-latest
     steps:
-      - name: Apply release changes
+      - name: Generate release notes
         if: needs.build-image.outputs.do_release == 'true'
-        run: |
-          echo "${{needs.build-image.outputs.VERSION}}"
+        env:
+          GH_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+        run: gh release create "${{needs.build-image.outputs.VERSION}}" --generate-notes -t "${{needs.build-image.outputs.VERSION}}"
 
 
       
