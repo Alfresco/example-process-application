@@ -19,6 +19,8 @@ jobs:
       contents: read
       packages: write
       security-events: write
+    outputs:
+        do_release: ${{ steps.release_guard.outputs.do_release }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3 
@@ -80,7 +82,7 @@ jobs:
       - name: Apply release changes
         # if: steps.release_guard.outputs.do_release == 'true'
         run: |
-          echo "${{steps.release_guard.outputs.do_release}}"
+          echo "${{needs.release_guard.outputs.do_release}}"
           echo "Apply release changes"
 
 
