@@ -7,6 +7,8 @@ on:
 
 env:
   IMAGE_NAME: example-application-project
+  CLASSPATH_DIRECTORY_NAME: .activiti/project-release-volume
+  VERSION: 1
 
 
 jobs:
@@ -52,5 +54,8 @@ jobs:
           context: ./example-application-project
           tags: ghcr.io/alfresco/example-process-application:7.12.0-alpha.1
           push: true
+          build-args: |
+            CLASSPATH_DIRECTORY_NAME=${env.CLASSPATH_DIRECTORY_NAME}
+            VERSION=${env.VERSION}
 
       
