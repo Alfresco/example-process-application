@@ -55,7 +55,7 @@ jobs:
           tags: ghcr.io/alfresco/example-process-application:7.12.0-alpha.1
           push: true
           build-args: |
-            CLASSPATH_DIRECTORY_NAME=${env.CLASSPATH_DIRECTORY_NAME}
-            VERSION=${env.VERSION}
+            CLASSPATH_DIRECTORY_NAME=${{env.CLASSPATH_DIRECTORY_NAME}}
+            VERSION=${{env.VERSION}}
 
       
