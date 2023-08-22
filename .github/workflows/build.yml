@@ -82,7 +82,7 @@ jobs:
       - name: Apply release changes
         # if: steps.release_guard.outputs.do_release == 'true'
         run: |
-          echo "${{needs.release_guard.outputs.do_release}}"
+          echo "${{needs.build-image.outputs.do_release}}"
           echo "Apply release changes"
 
 
