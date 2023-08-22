@@ -84,7 +84,7 @@ jobs:
       - name: Apply release changes
         if: needs.build-image.outputs.do_release == 'true'
         run: |
-          echo "${{steps.fetch_version.outputs.VERSION}}"
+          echo "${{needs.build-image.outputs.VERSION}}"
 
 
       
