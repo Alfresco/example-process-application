@@ -21,13 +21,15 @@ jobs:
       security-events: write
     outputs:
         do_release: ${{ steps.release_guard.outputs.do_release }}
+        VERSION: ${{ steps.fetch_version.outputs.VERSION }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3 
 
       - name: Fetch next version
+        id: fetch_version
         run: |
-          echo "VERSION=$(cat version.txt)" >> $GITHUB_ENV
+          echo "VERSION=$(cat version.txt)" >> $GITHUB_OUTPUT
       
       - name: Check if release is necessary
         id: release_guard
@@ -68,7 +70,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./example-application-project
-          tags: ghcr.io/alfresco/example-process-application:${{ env.VERSION }}
+          tags: ghcr.io/alfresco/example-process-application:${{ steps.fetch_version.outputs.VERSION }}
           push: true
           build-args: |
             CLASSPATH_DIRECTORY_NAME=${{env.CLASSPATH_DIRECTORY_NAME}}
@@ -80,10 +82,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Apply release changes
-        # if: steps.release_guard.outputs.do_release == 'true'
+        if: needs.build-image.outputs.do_release == 'true'
         run: |
-          echo "${{needs.build-image.outputs.do_release}}"
-          echo "Apply release changes"
+          echo "${{steps.fetch_version.outputs.VERSION}}"
 
 
       
