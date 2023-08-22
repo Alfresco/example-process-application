@@ -37,7 +37,7 @@ jobs:
           else
             echo "do_release=true" >> $GITHUB_OUTPUT
           fi
-
+  
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -64,15 +64,26 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build image ${{ env.IMAGE_NAME }}
+        if: steps.release_guard.outputs.do_release == 'true'
         uses: docker/build-push-action@v4
         with:
           context: ./example-application-project
-          tags: ghcr.io/alfresco/example-process-application
+          tags: ghcr.io/alfresco/example-process-application:${{VERSION}}
           push: true
           build-args: |
             CLASSPATH_DIRECTORY_NAME=${{env.CLASSPATH_DIRECTORY_NAME}}
             VERSION=${{env.ARG_VERSION}}
 
-      
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Apply release changes
+        if: steps.release_guard.outputs.do_release == 'true'
+        run: |
+          echo "Apply release changes"
+
 
       
