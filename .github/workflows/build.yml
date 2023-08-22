@@ -25,6 +25,10 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3 
+        with:
+            fetch-depth: 0
+            ref: dev-rkumar-AAE-16008-Stop-building-example-application-project-on-every-run-of-helm-tests
+            token: ${{ secrets.BOT_GITHUB_TOKEN }}
 
       - name: Fetch next version
         id: fetch_version
@@ -34,7 +38,7 @@ jobs:
       - name: Check if release is necessary
         id: release_guard
         run: |
-          if git tag | grep -q "^${VERSION}$"; then
+          if git tag | grep -q "^${{steps.fetch_version.outputs.VERSION}}$"; then
             echo "do_release=false" >> $GITHUB_OUTPUT
           else
             echo "do_release=true" >> $GITHUB_OUTPUT
