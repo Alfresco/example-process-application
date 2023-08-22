@@ -8,20 +8,35 @@ on:
 env:
   IMAGE_NAME: example-application-project
   CLASSPATH_DIRECTORY_NAME: .activiti/project-release-volume
-  VERSION: 1
+  ARG_VERSION: 1
 
 
 jobs:
   build-image:
     runs-on: ubuntu-latest
+
     permissions:
       actions: read
       contents: read
       packages: write
       security-events: write
+
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3 
+
+      - name: Fetch next version
+        run: |
+          echo "VERSION=$(cat version.txt)" >> $GITHUB_ENV
+      
+      - name: Check if release is necessary
+        id: release_guard
+        run: |
+          if git tag | grep -q "^${VERSION}$"; then
+            echo "do_release=false" >> $GITHUB_OUTPUT
+          else
+            echo "do_release=true" >> $GITHUB_OUTPUT
+          fi
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -52,10 +67,12 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./example-application-project
-          tags: ghcr.io/alfresco/example-process-application:7.12.0-alpha.1
+          tags: ghcr.io/alfresco/example-process-application
           push: true
           build-args: |
             CLASSPATH_DIRECTORY_NAME=${{env.CLASSPATH_DIRECTORY_NAME}}
-            VERSION=${{env.VERSION}}
+            VERSION=${{env.ARG_VERSION}}
+
+      
 
       
