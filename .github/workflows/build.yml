@@ -81,6 +81,13 @@ jobs:
     needs: build-image
     runs-on: ubuntu-latest
     steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+        with:
+              fetch-depth: 0
+              ref: dev-rkumar-AAE-16008-Stop-building-example-application-project-on-every-run-of-helm-tests
+              token: ${{ secrets.BOT_GITHUB_TOKEN }}
+
       - name: Generate release notes
         if: needs.build-image.outputs.do_release == 'true'
         env:
