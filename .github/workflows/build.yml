@@ -1,9 +1,9 @@
-name: Test Workflow
+name: Build And Push
 
 on:
-  push:
-    branches:
-      - "dev-rkumar-AAE-16008-Stop-building-example-application-project-on-every-run-of-helm-tests"
+  pull_request:
+    types:
+    - closed
 
 env:
   IMAGE_NAME: example-application-project
@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v3 
         with:
             fetch-depth: 0
-            ref: dev-rkumar-AAE-16008-Stop-building-example-application-project-on-every-run-of-helm-tests
+            ref: master
             token: ${{ secrets.BOT_GITHUB_TOKEN }}
 
       - name: Fetch next version
@@ -89,7 +89,7 @@ jobs:
         uses: actions/checkout@v3
         with:
               fetch-depth: 0
-              ref: dev-rkumar-AAE-16008-Stop-building-example-application-project-on-every-run-of-helm-tests
+              ref: master
               token: ${{ secrets.BOT_GITHUB_TOKEN }}
 
       - name: Generate release notes
