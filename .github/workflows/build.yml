@@ -1,0 +1,99 @@
+name: Build And Push
+
+on:
+  pull_request:
+    types:
+    - closed
+
+env:
+  IMAGE_NAME: example-application-project
+  CLASSPATH_DIRECTORY_NAME: .activiti/project-release-volume
+  ARG_VERSION: 1
+
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      packages: write
+      security-events: write
+    outputs:
+        do_release: ${{ steps.release_guard.outputs.do_release }}
+        VERSION: ${{ steps.fetch_version.outputs.VERSION }}
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3 
+        with:
+            fetch-depth: 0
+            ref: master
+            token: ${{ secrets.BOT_GITHUB_TOKEN }}
+
+      - name: Fetch next version
+        id: fetch_version
+        run: |
+          echo "VERSION=$(cat version.txt)" >> $GITHUB_OUTPUT
+      
+      - name: Check if release is necessary
+        id: release_guard
+        run: |
+          if git tag | grep -q "^${{steps.fetch_version.outputs.VERSION}}$"; then
+            echo "do_release=false" >> $GITHUB_OUTPUT
+          else
+            echo "do_release=true" >> $GITHUB_OUTPUT
+          fi
+  
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          version: v0.11.0
+          # apply fix from https://github.com/moby/buildkit/issues/3969
+          driver-opts: |
+            image=moby/buildkit:v0.11.6
+            network=host
+
+      - name: Login to docker.io
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Login to ghcr.io
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build image ${{ env.IMAGE_NAME }}
+        if: steps.release_guard.outputs.do_release == 'true'
+        uses: docker/build-push-action@v4
+        with:
+          context: ./example-application-project
+          tags: ghcr.io/alfresco/example-process-application:${{ steps.fetch_version.outputs.VERSION }}
+          push: true
+          build-args: |
+            CLASSPATH_DIRECTORY_NAME=${{env.CLASSPATH_DIRECTORY_NAME}}
+            VERSION=${{env.ARG_VERSION}}
+
+  release-notes:
+    name: Release Notes
+    needs: build-image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+        with:
+              fetch-depth: 0
+              ref: master
+              token: ${{ secrets.BOT_GITHUB_TOKEN }}
+
+      - name: Generate release notes
+        if: needs.build-image.outputs.do_release == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+        run: gh release create "${{needs.build-image.outputs.VERSION}}" --generate-notes -t "${{needs.build-image.outputs.VERSION}}"
